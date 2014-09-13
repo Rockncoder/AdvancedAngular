@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+  <title>RAMalytics</title>
+  <script>
+    var beginTimeStamp = (new Date).getTime();
+  </script>
+  <link rel="stylesheet" href="css/chui-3.5.2.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/jquery-ui-1.10.2.custom.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<!--               -->
+<!-- Tablet Markup -->
+<!--               -->
+<body class='splitlayout'>
+<nav class="tablet master">
+  <h1>
+    <span class="titleCaps">RAM</span><span class="titleLowercase">alytics</span>
+  </h1>
+</nav>
+<article class='tablet master'>
+  <section id="scroller2">
+    <h2>Choose an Action</h2>
+    <ul class='list'>
+      <li data-goto="reports" class=''>
+        <a href="#reports">
+          <h3><i class="fa fa-bar-chart-o fa-2x fa-fw"></i>Reports</h3>
+        </a>
+      </li>
+      <li data-goto="viewdata" class=''>
+        <a href="#view-data">
+        <h3><i class="fa fa-table fa-2x fa-fw"></i>View Data</h3>
+        </a>
+      </li>
+      <li data-goto="uploaddata" class='web-only'>
+        <a href="#upload-data">
+        <h3><i class="fa fa-cloud-upload fa-2x fa-fw"></i>Upload Data</h3>
+        </a>
+      </li>
+      <li data-goto="campaigns" class=''>
+        <a href="#campaigns">
+        <h3><i class="fa fa-calendar fa-2x fa-fw"></i>Campaigns</h3>
+        </a>
+      </li>
+      <li data-goto="admin" class=''>
+        <a href="#admin">
+        <h3><i class="fa fa-gear fa-2x fa-fw"></i>Admin</h3>
+        </a>
+      </li>
+    </ul>
+    <h2>Status</h2>
+    <ul class='list'>
+      <li  class=''>
+        <h3>Current Client</h3>
+        <h4 id="clientName"></h4>
+      </li>
+      <li  class=''>
+        <h3>Last Data Upload</h3>
+        <h4 id="lastUpload"></h4>
+      </li>
+    </ul>
+  </section>
+</article>
+
+<nav class="tablet">
+  <a class='back-button button'></a>
+  <h1 id='detailTitle'></h1>
+  <a class='more-button button'></a>
+</nav>
+<article id='details-reports-article' class='tablet detail current'>
+  <section>
+    <div class="logo-image"></div>
+  </section>
+</article>
+
+<!--              -->
+<!-- Phone Markup -->
+<!--              -->
+<nav class="phone current">
+  <h1>
+    <span class="titleCaps">RAM</span><span class="titleLowercase">alytics</span>
+  </h1>
+</nav>
+<article id="main" class="phone navigable current">
+  <section>
+    <ul class='list'>
+      <li data-goto="reports-article" class='nav'>
+          <h3><i class="fa fa-bar-chart-o fa-2x fa-fw"></i>Reports</h3>
+      </li>
+      <li data-goto="view-data-article" class='nav'>
+        <h3><i class="fa fa-table fa-2x fa-fw"></i>View Data</h3>
+      </li>
+      <li data-goto="campaigns-article" class='nav'>
+        <h3><i class="fa fa-calendar fa-2x fa-fw"></i>Campaigns</h3>
+      </li>
+      <li data-goto="admin-article" class='nav'>
+        <h3><i class="fa fa-gear fa-2x fa-fw"></i>Admin</h3>
+      </li>
+    </ul>
+    <h2>Status</h2>
+    <ul class='list'>
+      <li  class=''>
+        <h3>Current Client</h3>
+        <h4 id="clientName"></h4>
+      </li>
+      <li  class=''>
+        <h3>Last Data Upload</h3>
+        <h4 id="lastUpload"></h4>
+      </li>
+    </ul>
+  </section>
+</article>
+
+<nav class="phone next">
+  <a class='button back'></a>
+  <h1>Reports</h1>
+</nav>
+<article id='reports-article' class='phone navigable next second'>
+  <section>
+  </section>
+</article>
+
+<nav class="phone next">
+  <a class='button back'></a>
+  <h1>View Data</h1>
+</nav>
+<article id='view-data-article' class='phone navigable next second'>
+  <section>
+  </section>
+</article>
+
+<nav class="phone next">
+  <a class='button back'></a>
+  <h1>Campaigns</h1>
+  <a class='more-button button'></a>
+</nav>
+<article id='campaigns-article' class='phone navigable next second'>
+  <section>
+  </section>
+</article>
+
+<nav class="phone next">
+  <a class='button back'></a>
+  <h1>Admin</h1>
+</nav>
+<article id='admin-article' class='phone next second'>
+  <section id='details-section'>
+  </section>
+</article>
+
+<!--           -->
+<!-- Templates -->
+<!--           -->
+<script id="splashTemplate" type="text/template">
+    <div class="logo-image"></div>
+</script>
+
+<script id="reportsTemplate" type="text/template">
+  <div class="horizontal centered">
+    <div class="segmented">
+      <a id="vd_weekly-analysis" class="button" href="" >Weekly Analysis</a>
+      <a id="vd_full-report" class="button" href="">Full Report</a>
+    </div>
+
+ </div>
+  <div class="horizontal centered" style="padding: 20px">
+    <table class="my-table">
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Eve</td>
+        <td>Jackson</td>
+        <td>94</td>
+      </tr>
+    </table>
+  </div>
+</script>
+
+<script id="viewDataTemplate" type="text/template">
+  <div class="horizontal centered">
+    <div class="segmented">
+      <a id="vd_responses" class="button">Responses</a>
+      <a id="vd_airings" class="button">Airings</a>
+      <a id="vd_timeline" class="button">Rating</a>
+      <a id="vd_map" class="button">Heat Map</a>
+    </div>
+  </div>
+  <div id="canvasHolder">
+    <canvas id="myChart" width="400" height="400" style="width=100%;"></canvas>
+  </div>
+</script>
+
+<script id="uploadDataTemplate" type="text/template">
+  <div class="grid">
+    <div class="col flex-1">
+      <form id="upload" action="parse-pdf" method="POST" enctype="multipart/form-data">
+        <fieldset>
+          <div>
+            <label for="fileselect">Files to upload:</label>
+            <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" class="button" />
+            <div id="filedrag">Drop Files Here</div>
+          </div>
+          <div id="submitbutton">
+            <button type="submit">Upload Files</button>
+          </div>
+        </fieldset>
+      </form>
+      <div id="messages">
+        <p>Status Messages</p>
+      </div>
+    </div>
+    <div  id="file-name-list" class="col flex-1">
+      <ul class="list">
+      </ul>
+    </div>
+  </div>
+</script>
+
+<script id="adminTemplate" type="text/template">
+  <h2>Select Client</h2>
+  <ul class="select list">
+    <% _.each(clients, function(c) { %>
+      <li data-rnc-clientId="<%=c._id%>">
+          <h3><%=c.business %></h3>
+      </li>
+    <% }); %>
+  </ul>
+</script>
+
+<script id="campaignsTemplate" type="text/template">
+  <h2><span id="campaignClient"></span></h2>
+  <ul class="select list">
+    <% _.each(campaigns, function(c) { %>
+    <li data-rnc-clientId="<%=c._id%>" class="nav">
+      <h3><%=c.campaign %></h3>
+    </li>
+    <% }); %>
+  </ul>
+</script>
+
+<script id="campaignEditTemplate" type="text/template">
+  <h2>Edit Campaign</h2>
+  <ul class="list">
+    <li>
+      <h3>Campaign Name</h3>
+      <input id="campaignName" type="text" placeholder="Campaign Name" value="<%=campaign %>" style="width=100%;" autofocus/>
+    </li>
+    <li>
+      <h3>Products</h3>
+      <input id="products" type="text" placeholder="Products" value="<%=products %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Description</h3>
+        <textarea  id="description" style="width: 100%;"><%=description %></textarea>
+    </li>
+    <li class="">
+      <h3>Start Date</h3>
+      <input id=startDate name=startDate type=date class="date" placeholder="Start Date" value="<%=fromDate %>" />
+    </li>
+    <li class="">
+        <h3>End Date</h3>
+        <input id=endDate name=endDate type=date class="date" placeholder="End Date" value="<%=toDate %>" />
+    </li>
+  </ul>
+  <a id="campaignEditDelete" class="button"><h3>Delete</h3></a>
+</script>
+
+<script id="campaignAddTemplate" type="text/template">
+  <h2>Add Campaign</h2>
+  <ul class="list">
+    <li>
+      <h3>Campaign Name</h3>
+      <input id="campaignName" type="text" placeholder="Campaign Name" value="" style="width=100%;" autofocus/>
+    </li>
+    <li>
+      <h3>Products</h3>
+      <input id="products" type="text" placeholder="Products" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Description</h3>
+      <textarea  id="description" style="width: 100%;"></textarea>
+    </li>
+    <li class="">
+      <h3>Start Date</h3>
+      <input id=startDate name=startDate type=date class="date" placeholder="Start Date" value="" />
+    </li>
+    <li class="">
+      <h3>End Date</h3>
+      <input id=endDate name=endDate type=date class="date" placeholder="End Date" value="" />
+    </li>
+  </ul>
+</script>
+
+<script id="clientEditTemplate" type="text/template">
+  <h2>Edit Client</h2>
+  <ul class="list">
+    <li>
+      <h3>Business Name</h3>
+      <input id="ceBusinessName" type="text" placeholder="Business Name" value="<%=business %>" style="width=100%;" autofocus/>
+    </li>
+    <li>
+      <h3>Website URL</h3>
+      <input id="ceWebsiteURL" type="text" placeholder="Website URL" value="<%=url %>" style="width=100%;" autofocus/>
+    </li>
+    <li>
+      <h3>Address 1</h3>
+      <input id="ceAddress" type="text" placeholder="Address" value="<%=address %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Address 2</h3>
+      <input id="ceAddress2" type="text" placeholder="Address 2" value="<%=address2 %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>City</h3>
+      <input id="ceCity" type="text" placeholder="City" value="<%=city %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>State</h3>
+      <input id="ceState" type="text" placeholder="State" value="<%=state %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Zip</h3>
+      <input id="ceZip" type="text" placeholder="Zip" value="<%=zip %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Contact</h3>
+      <input id="ceContact" type="text" placeholder="Contact" value="<%=pContact %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Email</h3>
+      <input id="ceEmail" type="text" placeholder="Email" value="<%=email %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Phone</h3>
+      <input id="cePhone" type="text" placeholder="Phone" value="<%=busPhone %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Fax</h3>
+      <input id="ceFax" type="text" placeholder="Fax" value="<%=fax %>" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Start Date</h3>
+      <input id="ceStartDate" type="text" placeholder="Start Date" value="<%=openD %>" style="width=1000px;" />
+    </li>
+  </ul>
+  <a id="clientEditDelete" class="button"><h3>Delete</h3></a>
+</script>
+
+<script id="clientAddTemplate" type="text/template">
+  <h2>Add Client</h2>
+  <ul class="list">
+    <li>
+      <h3>Business Name</h3>
+      <input id="caBusinessName" type="text" placeholder="Business Name" value="" style="width=100%;" autofocus/>
+    </li>
+    <li>
+      <h3>Website URL</h3>
+      <input id="caWebsiteURL" type="text" placeholder="Website URL" value="" style="width=100%;" autofocus/>
+    </li>
+    <li>
+      <h3>Address 1</h3>
+      <input id="caAddress" type="text" placeholder="Address" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Address 2</h3>
+      <input id="caAddress2" type="text" placeholder="Address 2" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>City</h3>
+      <input id="caCity" type="text" placeholder="City" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>State</h3>
+      <input id="caState" type="text" placeholder="State" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Zip</h3>
+      <input id="caZip" type="text" placeholder="Zip" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Contact</h3>
+      <input id="caContact" type="text" placeholder="Contact" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Email</h3>
+      <input id="caEmail" type="text" placeholder="Email" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Phone</h3>
+      <input id="caPhone" type="text" placeholder="Phone" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Fax</h3>
+      <input id="caFax" type="text" placeholder="Fax" value="" style="width=1000px;" />
+    </li>
+    <li class="">
+      <h3>Start Date</h3>
+      <input id="caStartDate" type="text" placeholder="Start Date" value="" style="width=1000px;" />
+    </li>
+  </ul>
+</script>
+
+<script id="loginTemplate" type="text/template">
+  <div>Login</div>
+  <form id="signin" action=" " method="post">
+    <fieldset>
+      <ul>
+        <li>
+          <input id="username" name="username" type="email" placeholder="example@domain.com" required >
+        </li>
+        <li>
+          <input id="password" name="password" type="password" placeholder="password" required>
+        </li>
+        <li class="end">
+          <label for=remember>Remember Me</label>
+          <input class="remember" id="remember" name="rememberme" type="checkbox" checked>
+          <button type=submit>Login</button>
+        </li>
+        <li class="access">
+          <a href="/sendPassword">Can't access your account?</a>
+        </li>
+      </ul>
+    </fieldset>
+  </form>
+</script>
+
+<script id="mapTemplate" type="text/template">
+  <section class=" maps">
+    <h3 class="centered horizontal">Sign ups over time period by region</h3>
+    <div id="map">
+    </div>
+  </section><!-- end maps -->
+</script>
+
+<script id="fixTemplate" type="text/template">
+  <canvas id="myChart" width="400" height="400" style="width=100%;"></canvas>
+</script>
+
+<script id="fileNameTemplate" type="text/template">
+    <% _.each(files, function(f) { %>
+    <li class="comp">
+      <div>
+        <p class=""><%=f.name %></p>
+      </div>
+    </li>
+    <% }); %>
+</script>
+
+<script id="clientTemplate" type="text/template">
+  <% _.each(files, function(f) { %>
+  <li class="comp">
+    <div>
+      <p class=""><%=f.name %></p>
+    </div>
+  </li>
+  <% }); %>
+</script>
+
+<!--         -->
+<!-- Scripts -->
+<!--         -->
+<script type="text/javascript" src="cordova.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<script type="text/javascript" src="js/lib/modernizr.custom.53790.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="js/lib/chui-3.5.2.min.js"></script>
+<script type="text/javascript" src="js/lib/underscore-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-ui-1.10.2.custom.bc.js"></script>
+
+<script type="text/javascript" src="js/lib/backbone-1.0.0.min.js"></script>
+<script type="text/javascript" src="js/lib/backbone.localStorage-min.js"></script>
+<script type="text/javascript" src="js/lib/heatmap.js"></script>
+<script type="text/javascript" src="js/lib/heatmap-gmaps.js"></script>
+
+<script type="text/javascript" src="js/lib/Chart.js"></script>
+<script type="text/javascript" src="js/lib/moment.min.js"></script>
+<script type="text/javascript" src="js/system/main.js"></script>
+<script type="text/javascript" src="js/system/calendar.js"></script>
+
+<!-- define models -->
+<script src="js/models/filename.js"></script>
+<script src="js/models/setting.js"></script>
+<script src="js/models/client.js"></script>
+<script src="js/models/response.js"></script>
+<script src="js/models/alexa.js"></script>
+<script src="js/models/campaign.js"></script>
+<script src="js/models/current.js"></script>
+
+<!-- define collections -->
+<script src="js/collections/filenames.js"></script>
+<script src="js/collections/clients.js"></script>
+<script src="js/collections/responses.js"></script>
+<script src="js/collections/alexas.js"></script>
+<script src="js/collections/campaigns.js"></script>
+
+
+<script type="text/javascript" src="js/system/showMap.js"></script>
+
+<!-- define views -->
+<script type="text/javascript" src="js/views/reports.js"></script>
+<script type="text/javascript" src="js/views/viewData.js"></script>
+<script type="text/javascript" src="js/views/uploadData.js"></script>
+<script type="text/javascript" src="js/views/campaigns.js"></script>
+<script type="text/javascript" src="js/views/campaign-edit.js"></script>
+<script type="text/javascript" src="js/views/campaign-add.js"></script>
+<script type="text/javascript" src="js/views/admin.js"></script>
+<script type="text/javascript" src="js/views/client-edit.js"></script>
+<script type="text/javascript" src="js/views/client-add.js"></script>
+<script type="text/javascript" src="js/views/login.js"></script>
+<script type="text/javascript" src="js/views/filenames.js"></script>
+<script type="text/javascript" src="js/views/status.js"></script>
+<script type="text/javascript" src="js/views/splash.js"></script>
+
+<!-- define other objects -->
+<script type="text/javascript" src="js/system/ready.js"></script>
+<script type="text/javascript" src="js/system/router.js"></script>
+
+<!--<script type="text/javascript" src="all.js"></script>-->
+<script>
+var endTimeStamp = (new Date).getTime();
+console.log("Time = " + (endTimeStamp - beginTimeStamp));
+</script>
+
+</body>
+</html>

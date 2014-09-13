@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="parseExample">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Parse</title>
+</head>
+<body>
+
+<!-- if using jQuery it goes here -->
+<script src="../libs/angular.min.js"></script>
+<script>
+  angular.module("parseExample", [])
+    .run(function ($rootScope, $parse) {
+      var foo = {
+        bar: {
+          baz: {
+            name: ''
+          }
+        }
+      };
+      var name1, name2, name3;
+      if (typeof foo === 'object' &&
+        typeof foo.bar === 'object' &&
+        typeof foo.bar.baz === 'object') {
+        name1 = foo.bar.baz.name;
+      }
+      if(foo && foo.bar && foo.bar.baz && foo.bar.baz.name){
+        name2 = foo.bar.baz.name;
+      }
+
+
+      name3 = $parse('bar.baz.name')(foo);
+      debugger;
+    });
+</script>
+</body>
+</html>

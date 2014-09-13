@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Configuration</title>
+</head>
+<body>
+<div ng-controller="testController">
+  <hello></hello>
+  <div>Maximum Days = {{days}}</div>
+  <div>User Name = {{name}}</div>
+</div>
+
+<!-- if using jQuery it goes here -->
+<script src="../libs/angular.min.js"></script>
+<script>
+  var myMod = angular.module("myModule", [])
+    .value("maxDays", 90)
+    .factory("getName", function () {
+      return "bobo";
+    })
+    .directive('hello', function () {
+      return {
+        restrict: 'AE',
+        replace: 'true',
+        template: '<h3>Hello Angular</h3>'
+      };
+    })
+    .filter('minimum', [function () {
+      return function (arrTemp, minimum) {
+        var filteredArray = [];
+        var min = minimum ? minimum : 15;
+        angular.forEach(arrTemp, function (value, key) {
+          if (value >= min) filteredArray.push(value);
+        });
+        return filteredArray;
+      };
+    }])
+    .controller("testController", function ($scope, maxDays, getName, minimumFilter) {
+      $scope.days = maxDays;
+      $scope.name = getName;
+      var vals = [1,5, 16, 26, 99, 12];
+      var filteredVals = minimumFilter(vals);
+      $scope.temps = filteredVals;
+      debugger;
+    });
+
+</script>
+
+</body>
+</html>

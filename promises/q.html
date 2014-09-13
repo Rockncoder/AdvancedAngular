@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="tempApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="../libs/bootstrap.min.js"/>
+</head>
+<body>
+<div ng-controller="qController">
+  <span ng-bind="myValue"></span>
+  <hr/>
+  <span ng-bind="step"></span>
+</div>
+
+<script src="../libs/angular.min.js"></script>
+<script>
+  angular.module("tempApp", []).
+    controller("qController",['$scope','$q',function($scope, $q){
+      $scope.addOne = function(num){
+        var q = $q.defer();
+        $scope.step++;
+        if(angular.isNumber(num)){
+          $timeout(function(){
+            q.resolve(num+1);
+          }, 1000);
+        } else {
+          q.reject('NaN');
+        }
+        return q.promise;
+      };
+      $scope.step = 0;
+      $scope.myValue = 0;
+      $scope.promise = $scope.addOne($scope.myValue);
+      $scope.promise
+        .then(function(v){return $scope.addOne(v);})
+        .then(function(v){return $scope.addOne(v);})
+        .then(function(v){return $scope.addOne(v);})
+        .then(function(v){return $scope.addOne(v);})
+        .then(
+        function(v){return $scope.myValue = v;},
+        function(err){return $scope.myValue = err;}
+      );
+    }]);
+</script>
+</body>
+</html>
